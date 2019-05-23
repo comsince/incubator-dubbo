@@ -40,7 +40,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * MonitorFilter. (SPI, Singleton, ThreadSafe)
  */
-@Activate(group = {Constants.PROVIDER, Constants.CONSUMER})
+//@Activate(group = {Constants.PROVIDER, Constants.CONSUMER})
 public class MonitorFilter implements Filter {
 
     private static final Logger logger = LoggerFactory.getLogger(MonitorFilter.class);

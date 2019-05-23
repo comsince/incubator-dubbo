@@ -18,9 +18,7 @@
  */
 package org.apache.dubbo.demo.provider;
 
-import org.apache.dubbo.config.ApplicationConfig;
-import org.apache.dubbo.config.RegistryConfig;
-import org.apache.dubbo.config.ServiceConfig;
+import org.apache.dubbo.config.*;
 import org.apache.dubbo.demo.DemoService;
 
 public class Application {
@@ -29,11 +27,24 @@ public class Application {
      * launch the application
      */
     public static void main(String[] args) throws Exception {
+        ConfigCenterConfig configCenterConfig = new ConfigCenterConfig();
+        configCenterConfig.setAddress("zookeeper://zk-test-master1.meizu.mz:2181");
+        //metadata
+        MetadataReportConfig metadataReportConfig = new MetadataReportConfig();
+        metadataReportConfig.setAddress("zookeeper://zk-test-master1.meizu.mz:2181");
+
         ServiceConfig<DemoServiceImpl> service = new ServiceConfig<>();
         service.setApplication(new ApplicationConfig("dubbo-demo-api-provider"));
-        service.setRegistry(new RegistryConfig("multicast://224.5.6.7:1234"));
+        service.setRegistry(new RegistryConfig("zookeeper://zk-test-master1.meizu.mz:2181"));
         service.setInterface(DemoService.class);
+
+        MetricsConfig metricsConfig = new MetricsConfig();
+        metricsConfig.setPort("20886");
+        metricsConfig.setProtocol("dubbo");
+        service.setMetrics(metricsConfig);
         service.setRef(new DemoServiceImpl());
+        service.setConfigCenter(configCenterConfig);
+        service.setMetadataReportConfig(metadataReportConfig);
         service.export();
         System.in.read();
     }

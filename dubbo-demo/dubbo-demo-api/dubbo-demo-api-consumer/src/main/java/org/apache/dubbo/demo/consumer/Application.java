@@ -18,23 +18,39 @@
  */
 package org.apache.dubbo.demo.consumer;
 
-import org.apache.dubbo.config.ApplicationConfig;
-import org.apache.dubbo.config.ReferenceConfig;
-import org.apache.dubbo.config.RegistryConfig;
+import org.apache.dubbo.config.*;
 import org.apache.dubbo.demo.DemoService;
+
+import java.io.IOException;
 
 public class Application {
     /**
      * In order to make sure multicast registry works, need to specify '-Djava.net.preferIPv4Stack=true' before
      * launch the application
      */
-    public static void main(String[] args) {
-        ReferenceConfig<DemoService> reference = new ReferenceConfig<>();
-        reference.setApplication(new ApplicationConfig("dubbo-demo-api-consumer"));
-        reference.setRegistry(new RegistryConfig("multicast://224.5.6.7:1234"));
-        reference.setInterface(DemoService.class);
-        DemoService service = reference.get();
-        String message = service.sayHello("dubbo");
-        System.out.println(message);
-    }
+//    public static void main(String[] args) throws IOException, InterruptedException {
+//        ReferenceConfig<DemoService> reference = new ReferenceConfig<>();
+//        reference.setApplication(new ApplicationConfig("dubbo-demo-api-consumer"));
+//        reference.setRegistry(new RegistryConfig("zookeeper://zk-test-master1.meizu.mz:2181"));
+//        reference.setInterface(DemoService.class);
+//        MetricsConfig metricsConfig = new MetricsConfig();
+//        metricsConfig.setPort("20885");
+//        metricsConfig.setProtocol("dubbo");
+//
+//        //metadata
+//        MetadataReportConfig metadataReportConfig = new MetadataReportConfig();
+//        metadataReportConfig.setAddress("zookeeper://zk-test-master1.meizu.mz:2181");
+//
+//        reference.setMetrics(metricsConfig);
+//        reference.setMetadataReportConfig(metadataReportConfig);
+//
+//        DemoService service = reference.get();
+//        for(;;){
+//            String message = service.sayHello("dubbo");
+//            System.out.println(message);
+//            Thread.sleep(20);
+//        }
+//
+//    }
+
 }

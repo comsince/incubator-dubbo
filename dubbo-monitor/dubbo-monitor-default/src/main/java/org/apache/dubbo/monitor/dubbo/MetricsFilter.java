@@ -28,6 +28,7 @@ import com.alibaba.metrics.common.MetricsCollector;
 import com.alibaba.metrics.common.MetricsCollectorFactory;
 import org.apache.dubbo.common.Constants;
 import org.apache.dubbo.common.URL;
+import org.apache.dubbo.common.extension.Activate;
 import org.apache.dubbo.common.extension.ExtensionLoader;
 import org.apache.dubbo.common.logger.Logger;
 import org.apache.dubbo.common.logger.LoggerFactory;
@@ -53,7 +54,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
-
+@Activate(group = {Constants.PROVIDER, Constants.CONSUMER})
 public class MetricsFilter implements Filter {
 
     private static final Logger logger = LoggerFactory.getLogger(MetricsFilter.class);
