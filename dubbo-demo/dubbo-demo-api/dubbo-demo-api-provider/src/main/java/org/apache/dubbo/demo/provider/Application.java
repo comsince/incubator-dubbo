@@ -37,11 +37,15 @@ public class Application {
         service.setApplication(new ApplicationConfig("dubbo-demo-api-provider"));
         service.setRegistry(new RegistryConfig("zookeeper://zk-test-master1.meizu.mz:2181"));
         service.setInterface(DemoService.class);
+        ProtocolConfig protocolConfig = new ProtocolConfig();
+        protocolConfig.setPort(20885);
+        service.setProtocol(protocolConfig);
 
         MetricsConfig metricsConfig = new MetricsConfig();
-        metricsConfig.setPort("20886");
+        metricsConfig.setPort("30885");
         metricsConfig.setProtocol("dubbo");
         service.setMetrics(metricsConfig);
+
         service.setRef(new DemoServiceImpl());
         service.setConfigCenter(configCenterConfig);
         service.setMetadataReportConfig(metadataReportConfig);

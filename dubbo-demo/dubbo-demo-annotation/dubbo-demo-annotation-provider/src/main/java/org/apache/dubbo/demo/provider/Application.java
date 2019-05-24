@@ -41,11 +41,11 @@ public class Application {
     @EnableDubbo(scanBasePackages = "org.apache.dubbo.demo.provider")
     @PropertySource("classpath:/spring/dubbo-provider.properties")
     static class ProviderConfiguration {
-        @Bean
-        public RegistryConfig registryConfig() {
-            RegistryConfig registryConfig = new RegistryConfig();
-            registryConfig.setAddress("multicast://224.5.6.7:1234");
-            return registryConfig;
-        }
+//        @Bean
+//        public RegistryConfig registryConfig() {
+//            RegistryConfig registryConfig = new RegistryConfig();
+//            registryConfig.setAddress("multicast://224.5.6.7:1234");
+//            return registryConfig;
+//        }
     }
 }
